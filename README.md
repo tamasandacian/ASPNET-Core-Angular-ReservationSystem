@@ -79,9 +79,16 @@ VALUES
 (105, 'Handball (also known as team handball, European handball or Olympic handball) is a team sport in which two teams of seven players each (six outcourt players and a goalkeeper) pass a ball using their hands with the aim of throwing it into the goal of the other team.', 'Casper 77, Aalborg, Denmark', '13', '21'),
 (106, 'Volleyball is a popular team sport in which two teams of six players are separated by a net. Each team tries to score points by grounding a ball on the other teams court under organized rules.', 'Ryesgade 67, Copenhagen, Denmark', '10', '19'),
 (107, 'Badminton is a racquet sport played using racquets to hit a shuttlecock across a net. Although it may be played with larger teams, the most common forms of the game are "singles" (with one player per side) and "doubles" (with two players per side).', 'Sofiendelsvej 99, Aalborg, Denmark', '9', '20');
+
+9. create PayPal sandbox account
+
+10. create buyer mock & business mock test account to perform PayPal payments
       
 FRONT-END:
 1. cd front-end/reservation-system
+2. navigate to index.html file
+3. replace client-id
+   <script src="https://www.paypal.com/sdk/js?client-id=REPLACE_WITH_YOUR_CLIENT_ID&currency=DKK"></script>
 2. npm install
 3. ng build
 5. ng serve
