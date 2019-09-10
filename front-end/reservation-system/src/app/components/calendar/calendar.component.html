@@ -1,0 +1,290 @@
+<div class="row" style="margin-top:100px;">
+  <div class="col-md-7" style="margin-bottom: 10px;">
+
+    <!-- DISPLAY PREVIOUS, TODAY, NEXT, CALENDAR DATE, MONTH, VIEW, DAY BUTTONS -->
+    <div class="row text-center" style="margin-bottom:10px;">
+      <div class="col-md-4">
+        <div class="btn-group">
+          <div class="btn btn-primary btn-sm" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+            (viewDateChange)="closeOpenMonthViewDay()"> Previous </div>
+          <div class="btn btn-outline-secondary btn-sm" mwlCalendarToday [(viewDate)]="viewDate"> Today </div>
+          <div class="btn btn-primary btn-sm" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+            (viewDateChange)="closeOpenMonthViewDay()"> Next </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <span style="font-size: 20px;">{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</span>
+      </div>
+      <div class="col-md-4">
+        <div class="btn-group">
+          <div class="btn btn-primary btn-sm" (click)="setView(CalendarView.Month)"
+            [class.active]="view === CalendarView.Month"> Month </div>
+          <div class="btn btn-primary btn-sm" (click)="setView(CalendarView.Week)"
+            [class.active]="view === CalendarView.Week"> Week </div>
+          <div class="btn btn-primary btn-sm" (click)="setView(CalendarView.Day)"
+            [class.active]="view === CalendarView.Day"> Day </div>
+        </div>
+      </div>
+    </div>
+    <!---------------------------------------------------------------------------->
+
+    <!-- DISPLAY CREATE RESERVATION BUTTON -->
+    <div class="row" *ngIf="showCreateEventBtn">
+      <div class="col-md-12">
+        <div class="card bg-light">
+          <button (click)="onCreate()" class="btn-sm btn-success"><i class="fa fa-plus" aria-hidden="true"></i>
+            Create Reservation </button>
+        </div>
+      </div>
+    </div>
+    <!-- -------------------------------- -->
+
+    <!-- DISPLAY UPDATE RESERVATION BUTTON -->
+    <div class="row" *ngIf="showUpdateEventBtn">
+      <div class="col-md-12">
+        <div class="card bg-light">
+          <button (click)="onUpdate()" class="btn-sm btn-warning"><i class="fa fa-pencil-square-o"
+              aria-hidden="true"></i>
+            Update Reservation </button>
+        </div>
+      </div>
+    </div>
+    <!-- -------------------------------- -->
+
+
+    <!-- DISPLAY DELETE RESERVATION BUTTON -->
+    <div class="row" *ngIf="showDeleteEventBtn">
+      <div class="col-md-12">
+        <div class="card bg-light">
+          <button (click)="onDelete()" class="btn-sm btn-danger"><i class="fa fa-trash-o" aria-hidden="true"></i>
+            Delete Reservation </button>
+        </div>
+      </div>
+    </div>
+    <!-- -------------------------------- -->
+
+    <div class="row">
+      <div class="col-md-12">
+        <div [ngSwitch]="view">
+          <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events"
+            (dayClicked)="viewDate = $event.day.date; view = CalendarView.Week">
+          </mwl-calendar-month-view>
+          <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events"
+            (dayHeaderClicked)="viewDate = $event.day.date; view = CalendarView.Week"
+            [dayStartHour]="field.startProgram" [dayEndHour]="field.endProgram"  (eventClicked)="eventClicked($event)">
+          </mwl-calendar-week-view>
+          <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events"
+            [dayStartHour]="field.startProgram" [dayEndHour]="field.endProgram"  (eventClicked)="eventClicked($event)">
+          </mwl-calendar-day-view>
+        </div>
+      </div>
+    </div>
+
+
+
+
+  </div>
+
+  <div class="col-md-5" style="margin-top:40px;" *ngIf="field">
+
+    <!-- SEARCH RESERVATION BY FIRSTNAME/LASTNAME -->
+    <div class="form-group has-search">
+      <span class="fa fa-search form-control-feedback"></span>
+      <input type="text" class="search form-control" name="search" (keyup)="searchTerm$.next($event.target.value)" placeholder="Search reservation by name">
+    </div> 
+    <!-- ------------------------------------------- -->
+
+
+    <!-- DISPLAY FIELD DETAILS -->
+    <div class="card mb-3">
+      <img src="{{ field.imageURL }}" height="220px" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title text-center">{{ field.title }}</h5>
+        <p class="card-text text-center">{{ field.priceHour }} DKK / Hour </p>
+        <p class="card-text" style="font-size: 18px;"><small class="text-muted">Program: {{ field.startProgram }}:00 -
+            {{ field.endProgram }}:00</small> </p>
+        <p class="card-text" style="font-size: 18px;"><small class="text-muted">Description: {{ field.description }}</small></p>
+        <p class="card-text" style="font-size: 18px;"><small class="text-muted">Address: {{ field.address }}</small></p>
+      </div>
+    </div>
+    <!-- --------------------- -->
+
+    <!-- SHOW RESERVATION DETAIL  -->
+    <div *ngIf="showReservationDetail" class="card" style="margin-bottom: 10px;">
+      <div class="card-header">
+        <div class="float-left">
+          Reservation Detail
+        </div>
+      </div>
+      <div class="card-body">
+
+        <div class="form-row">
+          <div class="col-md-6">
+
+            <div class="form-group">
+              <!-- <label>Reservation No:</label> -->
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">#</div>
+                </div>
+                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                  value="{{ reservationForm.id }}" readonly>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <div>
+                <!-- <label>Reservation Name:</label> -->
+                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                  value="{{ reservationForm.title }}" readonly />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <div>
+                <!-- <label>Start Time:</label> -->
+                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                  value=" Start: {{ start }}" readonly />
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <div>
+                <!-- <label>End Time:</label> -->
+                <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+                  value=" End: {{ end }}" readonly />
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div>
+            <!-- <label>Duration Hours:</label> -->
+            <input type="text" class="form-control" aria-label="Small" aria-describedby="inputGroup-sizing-sm"
+              value="Duration: {{ duration }} h" readonly />
+          </div>
+        </div>
+
+
+
+      </div>
+      <div class="card-footer">
+        <div class="float-right" style="margin-right:30px">
+          <span>Total: {{ total }} DKK</span>
+        </div>
+
+      </div>
+    </div>
+    <!-- --------------------- -->
+
+    <!-- SHOW PROCEED TO PAYMENT BUTTON -->
+    <div class="float-right" style="margin: 10xpx;">
+      <button (click)="reserveNow()" [disabled]="disabledReserveNowBtn" class="btn btn-warning"><i
+          class="fa fa-credit-card-alt" aria-hidden="true"></i> Reserve Now </button>
+    </div>
+    <!-- --------------------- -->
+  </div>
+</div>
+
+
+
+<!-------------------------------- SHOW MODAL FORM  ------------------------->
+
+<ng-template #modalContent let-close="close">
+  <div class="modal-header">
+    <h5 class="modal-title">{{ submitType }} Reservation</h5>
+    <button type="button" class="close" (click)="close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+
+    <div *ngIf="showNew">
+
+
+      <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && onSubmit(f)">
+
+        <input type="hidden" name="primaryColor" #primaryColor="ngModel" [(ngModel)]="reservationForm.primaryColor">
+        <input type="hidden" name="secondaryColor" #secondaryColor="ngModel"[(ngModel)]="reservationForm.secondaryColor">
+
+        <div class="form-row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Reservation No:</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">#</div>
+                </div>
+                <input class="form-control" name="id" #id="ngModel"
+                  [(ngModel)]="reservationForm.id" readonly>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>Total</label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">DKK</div>
+                </div>
+                <input name="total" #total="ngModel" [(ngModel)]="reservationForm.total" class="form-control" readonly>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div>
+            <label>Reservation Name:</label>
+            <input class="form-control" name="title" #title="ngModel" [(ngModel)]="reservationForm.title"
+              (change)="updateTotal($event.target.value)">
+          </div>
+          <div style="color:red;" *ngIf="f.submitted && !title.valid">Reservation Name is required!</div>
+
+        </div>
+
+        <div class="form-group">
+          <div>
+            <label>Start:</label>
+            <input class="form-control" name="start" #start="ngModel" [(ngModel)]="reservationForm.start"
+              (ngModelChange)="getStartTimeSelection($event)" placeholder="Start Time" [minute-step]="minuteStep"
+              (closing$)="show = true" [min-hour]="minHour" [max-hour]="maxHour" [close-on-select]="false" min="0" max="60"
+              ngui-datetime-picker required />
+          </div>
+          <div style="color: red;" *ngIf="f.submitted && !start.valid">Start time is required!</div>
+
+        </div>
+
+        <div class="form-group">
+          <div>
+            <label>End:</label>
+            <input class="form-control" name="end" #end="ngModel" [(ngModel)]="reservationForm.end"
+              (ngModelChange)="getEndTimeSelection($event)" placeholder="End Time" [minute-step]="minuteStep"
+              [min-hour]="minHour" [max-hour]="maxHour" [close-on-select]="false" min="0" max="60" ngui-datetime-picker  />
+          </div>
+          <div style="color: red;" *ngIf="f.submitted && !start.valid">End time is required!</div>
+
+        </div>
+
+        <div class="modal-footer">
+          <button (click)="close()" class="btn-sm btn-primary" style="margin-right:5px;"> Cancel </button>
+          <button type="submit" class="btn-sm btn-success">{{ submitType }}</button>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+</ng-template>
+<!------------------------------------------------------------------------------>

@@ -1,0 +1,11 @@
+/* You can add global styles to this file, and also import other style files */
+@import "../node_modules/angular-calendar/css/angular-calendar.css";
+@import "../node_modules/ngx-toastr/toastr.css";
+
+@media (min-width: 1405px) {
+    .container-fluid{
+      width: 1400px;
+    }
+  }
+
+  

@@ -1,0 +1,26 @@
+<div class="row mgTp">
+    <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && login()" novalidate class="col-md-6 offset-md-3">
+        <h3 class="title">Login</h3>
+        <hr class="divisor">
+        <div class="form-group">
+            <div [ngClass]="{'has-error': 'f.submitted && emailAddress.valid'}">
+                <label>Email</label>
+                <input type="email" name="emailAddress" #emailAddress="ngModel" [(ngModel)]="model.emailAddress" required class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+            </div>
+            <div style="color: red; text-align: center;" *ngIf="f.submitted && !emailAddress.valid">Email Address is required!</div>
+            
+        </div>
+        <div class="form-group">
+            <div [ngClass]="{'has-error': 'f.submitted && password.valid'}">
+                <label>Password</label>
+                <input type="password" name="password" #password="ngModel" [(ngModel)]="model.password" required class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            <div style="color: red; text-align: center;" *ngIf="f.submitted && !password.valid">Password is required!</div>
+           
+        </div>
+
+        <p><a routerLink="/register"> Not registered? Register </a></p>
+
+        <button type="submit" class="btn btn-primary topBtn"><i class="fa fa-sign-in"></i> Login </button>
+    </form>
+</div>

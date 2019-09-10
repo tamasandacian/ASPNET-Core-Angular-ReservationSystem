@@ -1,0 +1,63 @@
+<div class="row mgTp">
+    <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && register()" class="col-md-6 offset-md-3" novalidate>
+        <h3 class="title">Register</h3>
+        <hr class="divisor">
+
+        <div class="form-group">
+            <div >
+                <label>First Name</label>
+                <input type="text" name="firstName" #firstName="ngModel" [(ngModel)]="model.firstName" required
+                    class="form-control" placeholder="Enter First Name">
+            </div>
+            <div style="color: red; text-align: center;" *ngIf="f.submitted && !firstName.valid">First Name is required!</div>
+
+        </div>
+
+        <div class="form-group">
+            <div >
+                <label>Last Name</label>
+                <input type="text" name="lastName" #lastName="ngModel" [(ngModel)]="model.lastName" required
+                    class="form-control" placeholder="Last Name">
+            </div>
+            <div style="color: red; text-align: center;" *ngIf="f.submitted && !lastName.valid">Last Name is required!</div>
+
+        </div>
+
+        <div class="form-group">
+            <div>
+                <label>Email Address</label>
+                <input type="email" name="emailAddress" #emailAddress="ngModel" [(ngModel)]="model.emailAddress" required class="form-control"
+                    placeholder="Enter email">
+            </div>
+            <div style="color: red; text-align: center;" *ngIf="f.submitted && !emailAddress.valid"> Email is required!</div>
+            
+        </div>
+
+        <div class="form-group">
+            <div>
+                <label>Phone No</label>
+                <input type="text" name="phoneNo" #phoneNo="ngModel" [(ngModel)]="model.phoneNo" required
+                    class="form-control" placeholder="Phone No">
+            </div>
+            <div style="color: red; text-align: center;" *ngIf="f.submitted && !phoneNo.valid">Phone No is required!</div>
+            
+        </div>
+
+        <div class="form-group">
+            <div [ngClass]="{'has-error': 'f.submitted && !password.valid'}">
+                <label>Password</label>
+                <input type="password" name="password" #password="ngModel" [(ngModel)]="model.password" required
+                    class="form-control" placeholder="Password">
+            </div>
+            <div style="color: red; text-align: center;" *ngIf="f.submitted && !password.valid">Password is required!</div>
+          
+        </div>
+
+        <p><a routerLink="/login">Registered already? Login</a></p>
+
+        <button type="submit" class="btn btn-primary topBtn"><i class="fa fa-sign-in"></i> Register </button>
+
+    </form>
+
+
+</div>

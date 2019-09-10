@@ -1,0 +1,37 @@
+<div class="mgTp">
+
+    <div class="card card-body bg-light text-center" style="margin-bottom:20px;">
+       <h3 style="color: rgb(97, 165, 42)">My Reservations</h3> 
+   </div>
+
+    <div class="table-responsive">
+        <table class="table">
+            <thead class="thead-light">
+              <tr>
+                <th class="text-center" style="font-size:14px;" scope="col">#</th>
+                <th class="text-center" style="font-size:14px;" scope="col">Field</th>
+                <th class="text-center" style="font-size:14px;" scope="col">Reservation Name</th>
+                <th class="text-center" style="font-size:14px;" scope="col">Total</th>
+                <th class="text-center" style="font-size:14px;" scope="col">Address</th>
+                <th class="text-center" style="font-size:14px;" scope="col">Start</th>
+                <th class="text-center" style="font-size:14px;" scope="col">End</th>
+              </tr>
+            </thead>
+            <tbody *ngIf="reservations?.length > 0; else no_reservations">
+              <tr *ngFor="let reservation of reservations">
+                <td class="text-center" style="font-size:14px;" ><a (click)="redirectToCalendar(reservation)" style="cursor: pointer; color:rgb(52, 111, 223)">{{ reservation.id }}</a></td>
+                <td class="text-center" style="font-size:14px;">{{ reservation.field }}</td>
+                <td class="text-center" style="font-size:14px;">{{ reservation.name }}</td>
+                <td class="text-center" style="font-size:14px;" >{{ reservation.total }} DKK</td>
+                <td class="text-center" style="font-size:14px;">{{ reservation.address }}</td>
+                <td class="text-center" style="font-size:14px;" >{{ reservation.start | date :'h:mm a dd-MM-y'}}</td>
+                <td class="text-center" style="font-size:14px;">{{ reservation.end | date :'h:mm a dd-MM-y' }}</td>
+              </tr>
+            </tbody>
+            <ng-template #no_reservations>
+                <h5 style="color:red"> <i>No reservations available!</i></h5>
+              </ng-template>
+            
+          </table>
+        </div>
+</div>

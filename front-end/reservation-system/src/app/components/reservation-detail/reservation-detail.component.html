@@ -1,0 +1,71 @@
+<div class="row" style="margin-top:100px;">
+  <div class="col-md-7" style="margin-bottom: 10px;">
+
+    <!-- DISPLAY PREVIOUS, TODAY, NEXT, CALENDAR DATE, MONTH, VIEW, DAY BUTTONS -->
+    <div class="row text-center" style="margin-bottom:10px;">
+      <div class="col-md-4">
+        <div class="btn-group">
+          <div class="btn btn-primary btn-sm" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+            (viewDateChange)="closeOpenMonthViewDay()"> Previous </div>
+          <div class="btn btn-outline-secondary btn-sm" mwlCalendarToday [(viewDate)]="viewDate"> Today </div>
+          <div class="btn btn-primary btn-sm" mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+            (viewDateChange)="closeOpenMonthViewDay()"> Next </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <span style="font-size: 20px;">{{ viewDate | calendarDate:(view + 'ViewTitle'):'en' }}</span>
+      </div>
+      <div class="col-md-4">
+        <div class="btn-group">
+          <div class="btn btn-primary btn-sm" (click)="setView(CalendarView.Month)"
+            [class.active]="view === CalendarView.Month"> Month </div>
+          <div class="btn btn-primary btn-sm" (click)="setView(CalendarView.Week)"
+            [class.active]="view === CalendarView.Week"> Week </div>
+          <div class="btn btn-primary btn-sm" (click)="setView(CalendarView.Day)"
+            [class.active]="view === CalendarView.Day"> Day </div>
+        </div>
+      </div>
+    </div>
+    <!---------------------------------------------------------------------------->
+
+
+    <div class="row">
+      <div class="col-md-12">
+        <div [ngSwitch]="view">
+          <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events"
+            (dayClicked)="viewDate = $event.day.date; view = CalendarView.Week">
+          </mwl-calendar-month-view>
+          <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events"
+            (dayHeaderClicked)="viewDate = $event.day.date; view = CalendarView.Week" [dayStartHour]="startProgram"
+            [dayEndHour]="endProgram">
+          </mwl-calendar-week-view>
+          <mwl-calendar-day-view *ngSwitchCase="CalendarView.Day" [viewDate]="viewDate" [events]="events"
+            [dayStartHour]="startProgram" [dayEndHour]="endProgram">
+          </mwl-calendar-day-view>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-5" style="margin-top:40px;">
+   
+    <!-- DISPLAY RESERVATION DETAIL -->
+    <div class="card " *ngIf="events?.length > 0">
+      <img src="{{ events[0].imageURL }}" height="200px" class="card-img-top" alt="...">
+      <div class="card-body">
+        <h5 class="card-title text-center">{{ events[0].field }}</h5>
+        <p class="card-text text-center">{{ events[0].total }} DKK </p>
+        <p class="card-text text-center">(Reservation Name: {{ events[0].title }})</p>
+        <p class="card-text text-center"><small>{{ events[0].start | date :'h:mm a' }} -
+            {{ events[0].end | date :'h:mm a dd-MM-y' }}</small> </p>
+        <hr>
+        <p class="card-text" style="font-size: 18px;"><small class="text-muted">Description:
+            {{ events[0].description }}</small></p>
+        <p class="card-text" style="font-size: 18px;"><small class="text-muted">Address:
+            {{ events[0].address }}</small></p>
+      </div>
+    </div>
+    <!-- --------------------- -->
+
+  </div>
+</div>

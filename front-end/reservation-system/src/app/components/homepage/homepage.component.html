@@ -1,0 +1,20 @@
+
+    
+ <app-carousel></app-carousel> 
+    
+    <div class="row text-center">
+
+      <div class="col-lg-3 col-md-6 mb-4" *ngFor="let field of fields">
+        <div class="card h-100" >
+          <img class="card-img-top" src="{{ field.imageURL }}" height="150px" alt="">
+          <div class="card-body">
+            <h5 class="card-title">{{ field.title }}</h5>
+            <p class="card-text"> <b> {{ field.priceHour }} DKK / Hour </b>  </p>
+            <p class="card-text">(Time Schedule: {{ field.startProgram }}:00 - {{ field.endProgram }}:00) </p>
+          </div>
+          <div class="card-footer">
+            <a (click)="redirectToAngularCalendar(field)"  style="color:#fff; cursor: pointer;" class="btn btn-primary">Check Time Slots</a>
+          </div>
+        </div>
+      </div>
+    </div>

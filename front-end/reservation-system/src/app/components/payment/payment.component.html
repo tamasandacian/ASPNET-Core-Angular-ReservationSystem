@@ -1,0 +1,14 @@
+<div class="mgTp">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="text-center">
+                        <img src="{{ field.imageURL }}" class="img-fluid"> <br>
+                        <span style="font-size:19px;">({{ field.title }})</span> <br>
+                        <span>Reservation Name: {{ reservation.title }}</span> <br>
+                        <span>From {{ reservation.start | date :'h:mm a'}} - To: {{ reservation.end | date :'h:mm a dd-MM-y'}}</span> <br>
+                        <span style="font-size:27px;">Total: <b>{{ reservation.total }}</b> DKK </span> 
+                </div>
+                <div #paypal style="width: 100%"></div>
+            </div>
+        </div>
+</div>

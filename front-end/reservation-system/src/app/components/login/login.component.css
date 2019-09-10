@@ -1,0 +1,24 @@
+.title{
+    color:#007bff;
+}
+
+.mgTp{
+    margin-top:20%;
+}
+
+.topBtn{
+    margin-top:15px;
+}
+
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #007bff !important;
+    opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: #007bff !important;
+}
+
+::-ms-input-placeholder { /* Microsoft Edge */
+    color: #007bff !important;
+}
