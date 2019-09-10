@@ -1,0 +1,77 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/dacy/Python Development/ASPNET-Core-Angular-ReservationSystem/back-end/back-end.csproj": {}
+  },
+  "projects": {
+    "/home/dacy/Python Development/ASPNET-Core-Angular-ReservationSystem/back-end/back-end.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/dacy/Python Development/ASPNET-Core-Angular-ReservationSystem/back-end/back-end.csproj",
+        "projectName": "back-end",
+        "projectPath": "/home/dacy/Python Development/ASPNET-Core-Angular-ReservationSystem/back-end/back-end.csproj",
+        "packagesPath": "/home/dacy/.nuget/packages/",
+        "outputPath": "/home/dacy/Python Development/ASPNET-Core-Angular-ReservationSystem/back-end/obj/",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "/usr/share/dotnet/sdk/NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "/home/dacy/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp2.1": {
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[6.1.1, )"
+            },
+            "Microsoft.AspNetCore.All": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "target": "Package",
+              "version": "[2.1.1, )"
+            },
+            "Microsoft.NETCore.App": {
+              "target": "Package",
+              "version": "[2.1.0, )",
+              "autoReferenced": true
+            },
+            "Pomelo.EntityFrameworkCore.MySql": {
+              "target": "Package",
+              "version": "[2.1.2, )"
+            }
+          },
+          "imports": [
+            "net461"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

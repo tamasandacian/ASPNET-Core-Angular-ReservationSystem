@@ -1,0 +1,14 @@
+/home/dacy/Python Development/ASPNET-Core-Angular-ReservationSystem/back-end/bin/Debug/netcoreapp2.1/back-end.deps.json
+/home/dacy/Python Development/ASPNET-Core-Angular-ReservationSystem/back-end/bin/Debug/netcoreapp2.1/back-end.runtimeconfig.json
+/home/dacy/Python Development/ASPNET-Core-Angular-ReservationSystem/back-end/bin/Debug/netcoreapp2.1/back-end.runtimeconfig.dev.json
+/home/dacy/Python Development/ASPNET-Core-Angular-ReservationSystem/back-end/bin/Debug/netcoreapp2.1/back-end.dll
+/home/dacy/Python Development/ASPNET-Core-Angular-ReservationSystem/back-end/bin/Debug/netcoreapp2.1/back-end.pdb
+/home/dacy/Python Development/ASPNET-Core-Angular-ReservationSystem/back-end/obj/Debug/netcoreapp2.1/back-end.csprojAssemblyReference.cache
+/home/dacy/Python Development/ASPNET-Core-Angular-ReservationSystem/back-end/obj/Debug/netcoreapp2.1/back-end.csproj.CoreCompileInputs.cache
+/home/dacy/Python Development/ASPNET-Core-Angular-ReservationSystem/back-end/obj/Debug/netcoreapp2.1/back-end.RazorAssemblyInfo.cache
+/home/dacy/Python Development/ASPNET-Core-Angular-ReservationSystem/back-end/obj/Debug/netcoreapp2.1/back-end.RazorAssemblyInfo.cs
+/home/dacy/Python Development/ASPNET-Core-Angular-ReservationSystem/back-end/obj/Debug/netcoreapp2.1/back-end.AssemblyInfoInputs.cache
+/home/dacy/Python Development/ASPNET-Core-Angular-ReservationSystem/back-end/obj/Debug/netcoreapp2.1/back-end.AssemblyInfo.cs
+/home/dacy/Python Development/ASPNET-Core-Angular-ReservationSystem/back-end/obj/Debug/netcoreapp2.1/back-end.RazorTargetAssemblyInfo.cache
+/home/dacy/Python Development/ASPNET-Core-Angular-ReservationSystem/back-end/obj/Debug/netcoreapp2.1/back-end.dll
+/home/dacy/Python Development/ASPNET-Core-Angular-ReservationSystem/back-end/obj/Debug/netcoreapp2.1/back-end.pdb
